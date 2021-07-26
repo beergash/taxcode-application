@@ -1,10 +1,10 @@
 package it.aresta.taxcodeApplication.model;
 
-public class TaxCodeResponse {
+public class TaxCode {
 
     private String taxCode;
 
-    public TaxCodeResponse(String taxCode) {
+    public TaxCode(String taxCode) {
         this.taxCode = taxCode;
     }
 
