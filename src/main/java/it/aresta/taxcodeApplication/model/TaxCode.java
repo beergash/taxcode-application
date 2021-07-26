@@ -4,6 +4,9 @@ public class TaxCode {
 
     private String taxCode;
 
+    public TaxCode() {
+    }
+
     public TaxCode(String taxCode) {
         this.taxCode = taxCode;
     }
