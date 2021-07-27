@@ -32,6 +32,10 @@ public class MonthsCodingService {
         monthsCodes.put(12, "T");
     }
 
+    /**
+     * Gets Transcoding map between month index and correspondant character
+     * @return
+     */
     public Map<Integer, String> getMonthsCodes() {
         return monthsCodes;
     }

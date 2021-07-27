@@ -24,6 +24,11 @@ public class TaxCodeExceptionHandler {
 
     private static Logger LOGGER = LoggerFactory.getLogger(TaxCodeExceptionHandler.class.getName());
 
+    /**
+     * Handler for exception @{@link ValidationException}
+     * @param
+     * @return error message
+     */
     @ExceptionHandler({ValidationException.class})
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public GenericErrorResponse handleValidationException(ValidationException e) {
@@ -32,6 +37,11 @@ public class TaxCodeExceptionHandler {
         return error;
     }
 
+    /**
+     * Handler for exception @{@link MethodArgumentNotValidException}
+     * @param
+     * @return error message
+     */
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public GenericErrorResponse handleMethodArgumentNotValidException(
@@ -45,6 +55,11 @@ public class TaxCodeExceptionHandler {
         return new GenericErrorResponse(errorMessage);
     }
 
+    /**
+     * Handler for generic exception @{@link Exception}
+     * @param
+     * @return error message
+     */
     @ExceptionHandler({Exception.class})
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public GenericErrorResponse handleGenericException(Exception e) {

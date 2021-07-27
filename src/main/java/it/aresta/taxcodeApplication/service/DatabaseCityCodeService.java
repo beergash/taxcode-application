@@ -25,6 +25,12 @@ public class DatabaseCityCodeService implements CityCodeService {
     @Autowired
     private CityRepository cityRepository;
 
+    /**
+     * Retrieves catasto code from city name
+     * @param name
+     * @return catasto code
+     * @throws CityServiceException
+     */
     @Override
     public String getCatastoCodeFromName(String name) throws CityServiceException {
         Optional.ofNullable(name)
@@ -35,6 +41,13 @@ public class DatabaseCityCodeService implements CityCodeService {
         }
         return city.getCatastoCode();
     }
+
+    /**
+     * Retrieves city name from catasto code
+     * @param
+     * @return city name
+     * @throws CityServiceException
+     */
     @Override
     public String getNameFromCatastoCode(String catastoCode) throws CityServiceException {
         Optional.ofNullable(catastoCode)

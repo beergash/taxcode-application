@@ -9,8 +9,20 @@ import it.aresta.taxcodeApplication.exception.CityServiceException;
  */
 public interface CityCodeService {
 
+    /**
+     * get Catasto code from city name
+     * @param name
+     * @return catasto code
+     * @throws CityServiceException
+     */
     public String getCatastoCodeFromName(String name) throws CityServiceException;
 
+    /**
+     * get city name from catasto code
+     * @param
+     * @return city name
+     * @throws CityServiceException
+     */
     public String getNameFromCatastoCode(String catastoCode) throws CityServiceException;
 
 }

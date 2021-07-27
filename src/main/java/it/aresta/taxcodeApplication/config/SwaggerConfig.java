@@ -23,6 +23,10 @@ public class SwaggerConfig {
 
     private static final String TITLE = "Taxcode Application";
 
+    /**
+     * basic swagger api configuration
+     * @return
+     */
     @Bean
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
