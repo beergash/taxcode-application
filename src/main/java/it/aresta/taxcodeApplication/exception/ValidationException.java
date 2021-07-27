@@ -1,5 +1,10 @@
 package it.aresta.taxcodeApplication.exception;
 
+/**
+ * Exception handling all validation errors (input bad formatted, null values not allowed, ecc..)
+ *
+ * @author A.Aresta
+ */
 public class ValidationException extends RuntimeException {
 
     public ValidationException() {

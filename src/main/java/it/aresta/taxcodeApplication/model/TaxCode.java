@@ -1,7 +1,17 @@
 package it.aresta.taxcodeApplication.model;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+/**
+ * Tax Code Domain
+ *
+ * @author A.Aresta
+ */
 public class TaxCode {
 
+    @NotNull
+    @Size(min = 16, max = 16)
     private String taxCode;
 
     public TaxCode() {

@@ -13,10 +13,16 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.util.stream.Collectors;
 
+/**
+ * Application RestController Advices to catch service exception in controller execution
+ * and set appropriate http status errors
+ *
+ * @author A.Aresta
+ */
 @RestControllerAdvice
-public class CustomExceptionHandler {
+public class TaxCodeExceptionHandler {
 
-    private static Logger LOGGER = LoggerFactory.getLogger(CustomExceptionHandler.class.getName());
+    private static Logger LOGGER = LoggerFactory.getLogger(TaxCodeExceptionHandler.class.getName());
 
     @ExceptionHandler({ValidationException.class})
     @ResponseStatus(HttpStatus.BAD_REQUEST)
