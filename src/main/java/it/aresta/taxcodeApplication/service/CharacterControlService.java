@@ -16,9 +16,10 @@ import java.util.stream.Collectors;
 @Service
 public class CharacterControlService {
 
+    public static final int REMAINDER_DIVISOR_COEFFICIENT = 26;
     private Map<String, Integer> evenTransCodes = new HashMap<>();
     private Map<String, Integer> oddTransCodes = new HashMap<>();
-    private Map<Integer, String> restTransCodes = new HashMap<>();
+    private Map<Integer, String> remainderTransCodes = new HashMap<>();
     private Map<Integer, String> omocodiaTransCodes = new HashMap<>();
 
 
@@ -104,32 +105,32 @@ public class CharacterControlService {
         evenTransCodes.put("Z", 25);
 
         /// PUT REST VALUES
-        restTransCodes.put(0, "A");
-        restTransCodes.put(1, "B");
-        restTransCodes.put(2, "C");
-        restTransCodes.put(3, "D");
-        restTransCodes.put(4, "E");
-        restTransCodes.put(5, "F");
-        restTransCodes.put(6, "G");
-        restTransCodes.put(7, "H");
-        restTransCodes.put(8, "I");
-        restTransCodes.put(9, "J");
-        restTransCodes.put(10, "K");
-        restTransCodes.put(11, "L");
-        restTransCodes.put(12, "M");
-        restTransCodes.put(13, "N");
-        restTransCodes.put(14, "O");
-        restTransCodes.put(15, "P");
-        restTransCodes.put(16, "Q");
-        restTransCodes.put(17, "R");
-        restTransCodes.put(18, "S");
-        restTransCodes.put(19, "T");
-        restTransCodes.put(20, "U");
-        restTransCodes.put(21, "V");
-        restTransCodes.put(22, "W");
-        restTransCodes.put(23, "X");
-        restTransCodes.put(24, "Y");
-        restTransCodes.put(25, "Z");
+        remainderTransCodes.put(0, "A");
+        remainderTransCodes.put(1, "B");
+        remainderTransCodes.put(2, "C");
+        remainderTransCodes.put(3, "D");
+        remainderTransCodes.put(4, "E");
+        remainderTransCodes.put(5, "F");
+        remainderTransCodes.put(6, "G");
+        remainderTransCodes.put(7, "H");
+        remainderTransCodes.put(8, "I");
+        remainderTransCodes.put(9, "J");
+        remainderTransCodes.put(10, "K");
+        remainderTransCodes.put(11, "L");
+        remainderTransCodes.put(12, "M");
+        remainderTransCodes.put(13, "N");
+        remainderTransCodes.put(14, "O");
+        remainderTransCodes.put(15, "P");
+        remainderTransCodes.put(16, "Q");
+        remainderTransCodes.put(17, "R");
+        remainderTransCodes.put(18, "S");
+        remainderTransCodes.put(19, "T");
+        remainderTransCodes.put(20, "U");
+        remainderTransCodes.put(21, "V");
+        remainderTransCodes.put(22, "W");
+        remainderTransCodes.put(23, "X");
+        remainderTransCodes.put(24, "Y");
+        remainderTransCodes.put(25, "Z");
 
         /// PUT OMOCODIA CODES
         omocodiaTransCodes.put(0, "L");
@@ -150,6 +151,8 @@ public class CharacterControlService {
      * @return
      */
     public String calculateCharacterControl(String taxCode) {
+        Optional.ofNullable(taxCode)
+                .orElseThrow(() -> new ValidationException("TaxCode null in character control function"));
         List<String> oddValues = new ArrayList<>();
         List<String> evenValues = new ArrayList<>();
         for (int i=0; i<taxCode.length(); i++) {
@@ -166,8 +169,8 @@ public class CharacterControlService {
         int evenTransCodedSum = evenValues.stream()
                 .map(s -> evenTransCodes.get(s))
                 .collect(Collectors.summingInt(Integer::intValue));
-        int remainder = (oddTransCodedSum + evenTransCodedSum)%26;
-        return restTransCodes.get(remainder);
+        int remainder = (oddTransCodedSum + evenTransCodedSum)% REMAINDER_DIVISOR_COEFFICIENT;
+        return remainderTransCodes.get(remainder);
     }
 
     public String replaceNumbersForOmocodiaCases(String taxCode) {
@@ -181,21 +184,4 @@ public class CharacterControlService {
         }
         return result.toString();
         }
-
-
-    public Map<String, Integer> getEvenTransCodes() {
-        return evenTransCodes;
-    }
-
-    public Map<String, Integer> getOddTransCodes() {
-        return oddTransCodes;
-    }
-
-    public Map<Integer, String> getRestTransCodes() {
-        return restTransCodes;
-    }
-
-    public Map<Integer, String> getOmocodiaTransCodes() {
-        return omocodiaTransCodes;
-    }
 }

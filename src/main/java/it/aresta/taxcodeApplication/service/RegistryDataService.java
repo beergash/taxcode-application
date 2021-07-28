@@ -126,6 +126,9 @@ public class RegistryDataService {
      */
     public String getGenderFromTaxCode(String taxCode) {
         int birthDay = Integer.valueOf(taxCode.substring(9,11));
+        if (birthDay > MAX_RANGE_BIRTH_DAY_FEMALE) {
+            throw new ValidationException(String.format("Not valid birth day from taxCode %d", birthDay));
+        }
         return birthDay > MIN_RANGE_BIRTH_DAY_FEMALE && birthDay <= MAX_RANGE_BIRTH_DAY_FEMALE ? GenderEnum.F.name() : GenderEnum.M.name();
     }
 }

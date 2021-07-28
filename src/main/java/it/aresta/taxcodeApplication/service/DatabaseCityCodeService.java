@@ -36,7 +36,7 @@ public class DatabaseCityCodeService implements CityCodeService {
         Optional.ofNullable(name)
                 .orElseThrow(() -> new ValidationException("City name must not be null!"));
         City city = cityRepository.findByName(name.toUpperCase());
-        if (city == null || StringUtils.isEmpty(city.getName())) {
+        if (city == null || StringUtils.isEmpty(city.getCatastoCode())) {
             throw new CityServiceException(String.format("Not found catasto code for city %s", name));
         }
         return city.getCatastoCode();
@@ -53,6 +53,10 @@ public class DatabaseCityCodeService implements CityCodeService {
         Optional.ofNullable(catastoCode)
                 .orElseThrow(() -> new ValidationException("Catasto code must not be null!"));
         City city = cityRepository.findByCatastoCode(catastoCode);
+
+        if (city == null || StringUtils.isEmpty(city.getName())) {
+            throw new CityServiceException(String.format("Not found city for catasto code %s", catastoCode));
+        }
         return city.getName();
     }
 }
