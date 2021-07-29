@@ -2,6 +2,7 @@ package it.aresta.taxcodeApplication.service;
 
 import it.aresta.taxcodeApplication.exception.CityServiceException;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
@@ -12,6 +13,7 @@ import java.nio.charset.StandardCharsets;
  *
  * @author A.Aresta
  */
+@Primary
 @Service
 @Qualifier("csvCityCodeService")
 public class CsvCityCodeService implements CityCodeService {
