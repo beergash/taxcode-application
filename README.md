@@ -1,4 +1,5 @@
-## TaxCode Application
+## TaxCode Applicationr
+The application exposed 2 Rest apis which generate taxCode starting from personal data and extracts personal data (birth date, gender, birth city) from tax Code
 
 ### Build command
 mvn clean install
