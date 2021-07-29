@@ -1,5 +1,6 @@
 package it.aresta.taxcodeApplication.handler;
 
+import it.aresta.taxcodeApplication.exception.CityServiceException;
 import it.aresta.taxcodeApplication.exception.ValidationException;
 import it.aresta.taxcodeApplication.model.GenericErrorResponse;
 import org.slf4j.Logger;
@@ -33,6 +34,19 @@ public class TaxCodeExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public GenericErrorResponse handleValidationException(ValidationException e) {
         LOGGER.error("Validation Exception: " + e.getMessage());
+        GenericErrorResponse error = new GenericErrorResponse(e.getMessage());
+        return error;
+    }
+
+    /**
+     * Handler for exception @{@link it.aresta.taxcodeApplication.exception.CityServiceException}
+     * @param
+     * @return error message
+     */
+    @ExceptionHandler({CityServiceException.class})
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public GenericErrorResponse handleCityServiceException(CityServiceException e) {
+        LOGGER.error("CityServiceException: " + e.getMessage());
         GenericErrorResponse error = new GenericErrorResponse(e.getMessage());
         return error;
     }
