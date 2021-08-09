@@ -38,7 +38,7 @@ public class TaxCodeController {
     }
 
     /**
-     * extract informations (birth year, birty city, gender) from taxcode
+     * extract informations (birth year, birth city, gender) from taxcode
      * @param taxCode
      * @return
      */
