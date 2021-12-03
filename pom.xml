@@ -30,6 +30,20 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+                    <dependency>
+                        <groupId>org.springframework.cloud</groupId>
+                        <artifactId>spring-cloud-kubernetes-dependencies</artifactId>
+                        <version>0.3.0.RELEASE</version>
+                        <type>pom</type>
+                        <scope>import</scope>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.springframework.cloud</groupId>
+                        <artifactId>spring-cloud-dependencies</artifactId>
+                        <version>Greenwich.RELEASE</version>
+                        <type>pom</type>
+                        <scope>import</scope>
+                    </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -98,6 +112,15 @@
             <version>${commons-lang3.version}</version>
         </dependency>
 
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-kubernetes-config</artifactId>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-actuator</artifactId>
+            </dependency>
+
     </dependencies>
 
     <build>
@@ -105,20 +128,6 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <configuration>
-                    <archive>
-                        <manifest>
-                            <addClasspath>true</addClasspath>
-                            <classpathPrefix>${project.build.finalName}.lib/</classpathPrefix>
-                            <mainClass>it.beergash.taxcodeApplication.TaxCodeApplication</mainClass>
-                        </manifest>
-                    </archive>
-                </configuration>
             </plugin>
 
         </plugins>
