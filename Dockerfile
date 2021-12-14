@@ -1,4 +1,5 @@
 FROM openjdk:8-jdk-alpine
-ARG JAR_FILE=target/*.jar
-COPY ${JAR_FILE} app.jar
-ENTRYPOINT ["java","-jar","/app.jar"]
+ARG APP_VERSION=1.0.0-SNAPSHOT
+ARG JAR_FILE=target/taxcode-application-${APP_VERSION}.jar
+COPY ${JAR_FILE} taxcode-application.jar
+ENTRYPOINT ["java","-jar","/taxcode-application.jar"]
